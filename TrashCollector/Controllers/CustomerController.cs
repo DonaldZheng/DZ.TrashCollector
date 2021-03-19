@@ -38,7 +38,7 @@ namespace TrashCollector.Controllers
         // GET: CustomerController/Create
         public ActionResult Create()
         {
-            //
+           
             return View();
         }
 
@@ -50,10 +50,12 @@ namespace TrashCollector.Controllers
             try
             {
                 _context.Customers.Add(customer);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                Console.WriteLine("Error!");
                 return View();
             }
         }
@@ -61,20 +63,24 @@ namespace TrashCollector.Controllers
         // GET: CustomerController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var editCustomer = _context.Customers.Find(id);
+            return View(editCustomer);
         }
 
         // POST: CustomerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Customer customer)
         {
             try
             {
+                _context.Customers.Update(customer);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                Console.WriteLine("Error"!);
                 return View();
             }
         }
@@ -82,20 +88,24 @@ namespace TrashCollector.Controllers
         // GET: CustomerController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var deleteCustomer = _context.Customers.Find(id);
+            return View(deleteCustomer);
         }
 
         // POST: CustomerController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Customer customer)
         {
             try
             {
+                _context.Customers.Remove(customer);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                Console.WriteLine("Error!");
                 return View();
             }
         }
