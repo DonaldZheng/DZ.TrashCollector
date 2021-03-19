@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace TrashCollector.Models
 {
-    public class Customer
+    public class Employee
     {
         [Key]
-        public int CustomerId
+        public int EmployeeId
         {
             get; set;
         }
@@ -28,5 +28,6 @@ namespace TrashCollector.Models
         {
             get; set;
         }
+
     }
 }

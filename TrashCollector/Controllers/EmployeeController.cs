@@ -1,55 +1,39 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TrashCollector.Data;
-using TrashCollector.Models;
 
 namespace TrashCollector.Controllers
 {
-    [Authorize(Roles = "Customer")]
-    public class CustomerController : Controller
+    public class EmployeeController : Controller
     {
-        private ApplicationDbContext _context;
-
-        public CustomerController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-        // GET: CustomerController
+        // GET: EmployeeController
         public ActionResult Index()
         {
-            var returnList = _context.Customers.ToList();
-            return View(returnList);
-
-        }
-
-        // GET: CustomerController/Details/5
-        public ActionResult Details(int id)
-
-        {
-            var details = _context.Customers.Find(id);
-            return View(details);
-        }
-
-        // GET: CustomerController/Create
-        public ActionResult Create()
-        {
-            //
             return View();
         }
 
-        // POST: CustomerController/Create
+        // GET: EmployeeController/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: EmployeeController/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: EmployeeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer customer)
+        public ActionResult Create(IFormCollection collection)
         {
             try
             {
-                _context.Customers.Add(customer);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -58,13 +42,13 @@ namespace TrashCollector.Controllers
             }
         }
 
-        // GET: CustomerController/Edit/5
+        // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: CustomerController/Edit/5
+        // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -79,13 +63,13 @@ namespace TrashCollector.Controllers
             }
         }
 
-        // GET: CustomerController/Delete/5
+        // GET: EmployeeController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: CustomerController/Delete/5
+        // POST: EmployeeController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
