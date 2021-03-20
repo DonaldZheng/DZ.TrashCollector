@@ -15,7 +15,6 @@ namespace TrashCollector.Models
         {
             get; set;
         }
-
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "First Name is a Required Input")]
         public string FirstName
@@ -45,33 +44,36 @@ namespace TrashCollector.Models
         {
             get; set;
         }
-        
+
         [Display(Name = "Weekly Pickup Date")]
-        public DayOfWeek? PickUpDate
+        public string PickUpDate
         {
             get; set;
         }
-       
 
-        public string PickUpTime
+        [Display(Name = "One Time Pickup")]
+        public string OneTimePickUp
+        {
+            get; set;
+        }
+
+        [Display(Name = "Suspend Start Date")]
+        public string SuspendStartDate
+        {
+            get; set;
+        }
+
+        [Display(Name = "Suspend End Date")]
+        public string SuspendEndDate
+        {
+            get; set;
+        }
+
+        [Display(Name = "Balance Due")]
+        public string BalanceDue
         {
             get; set;
 
-        }
-      
-        public string Payment //
-        {
-            get; set;
-
-        }
-        [ForeignKey("IdentityUser")]
-        public string IdentityUserId
-        {
-            get; set;
-        }
-        public IdentityUser IdentityUser
-        {
-            get; set;
         }
     }
 }
