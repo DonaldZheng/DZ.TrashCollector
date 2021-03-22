@@ -109,6 +109,11 @@ namespace TrashCollector.Controllers
                 Console.WriteLine("Error!");
                 return View();
             }
-        }     
+        }
+        public ActionResult ChargeCustomer(int id)
+        {
+            var chargeId = _context.Customers.Find(id);
+            return View(chargeId);
+        }
     }
 }

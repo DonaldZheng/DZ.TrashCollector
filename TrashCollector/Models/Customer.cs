@@ -69,11 +69,11 @@ namespace TrashCollector.Models
             get; set;
         }
 
-        //[Display(Name = "Balance Due")]
-        //public double Balance
-        //{
-        //    get; set; 
-        //}
+        [Display(Name = "Balance Due")]
+        public double Balance
+        {
+            get; set;
+        }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId
