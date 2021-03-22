@@ -32,12 +32,7 @@ namespace TrashCollector.Data
             {
                 Name = "Employee",
                 NormalizedName = "EMPLOYEE"
-            }
-            );
-
-            base.OnModelCreating(builder);
-            builder.Entity<IdentityRole>()
-            .HasData(
+            }, 
             new IdentityRole
             {
                 Name = "Customer",

@@ -46,7 +46,7 @@ namespace TrashCollector.Models
         }
 
         [Display(Name = "Weekly Pickup Date")]
-        public DateTime? PickUpDate
+        public string PickUpDate
         {
             get; set;
         }
@@ -57,24 +57,18 @@ namespace TrashCollector.Models
             get; set;
         }
 
-        [Display(Name = "Suspend Start Date")]
+        [Display(Name = "Suspend Start Date (If Applicable)")]
         public DateTime? SuspendStartDate
         {
             get; set;
         }
 
-        [Display(Name = "Suspend End Date")]
+        [Display(Name = "Suspend End Date (If Applicable)")]
         public DateTime? SuspendEndDate
         {
             get; set;
         }
 
-        [Display(Name = "Balance Due")]
-        public string BalanceDue
-        {
-            get; set;
-
-        }
         [ForeignKey("IdentityUser")]
         public string IdentityUserId
         {
