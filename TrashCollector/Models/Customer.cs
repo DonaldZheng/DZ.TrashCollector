@@ -46,25 +46,25 @@ namespace TrashCollector.Models
         }
 
         [Display(Name = "Weekly Pickup Date")]
-        public string PickUpDate
+        public DateTime? PickUpDate
         {
             get; set;
         }
 
         [Display(Name = "One Time Pickup")]
-        public string OneTimePickUp
+        public DateTime? OneTimePickUp
         {
             get; set;
         }
 
         [Display(Name = "Suspend Start Date")]
-        public string SuspendStartDate
+        public DateTime? SuspendStartDate
         {
             get; set;
         }
 
         [Display(Name = "Suspend End Date")]
-        public string SuspendEndDate
+        public DateTime? SuspendEndDate
         {
             get; set;
         }
@@ -74,6 +74,15 @@ namespace TrashCollector.Models
         {
             get; set;
 
+        }
+        [ForeignKey("IdentityUser")]
+        public string IdentityUserId
+        {
+            get; set;
+        }
+        public IdentityUser IdentityUser
+        {
+            get; set;
         }
     }
 }

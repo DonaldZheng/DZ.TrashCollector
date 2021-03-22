@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using TrashCollector.Data;
 using TrashCollector.Models;
@@ -31,8 +32,16 @@ namespace TrashCollector.Controllers
         public ActionResult Details(int id)
 
         {
-            var details = _context.Customers.Find(id);
-            return View(details);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserId == userId).ToList();
+            if (customer.Count == 0)
+            {
+                return RedirectToAction(nameof(Create));
+            }
+            else
+            {
+                return View(customer);
+            }
         }
 
         // GET: CustomerController/Create
@@ -49,6 +58,9 @@ namespace TrashCollector.Controllers
         {
             try
             {
+                customer.CustomerId = 0;
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                customer.IdentityUserId = userId;
                 _context.Customers.Add(customer);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));

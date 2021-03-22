@@ -48,15 +48,15 @@ namespace TrashCollector.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "067788ea-b215-480d-b437-496e848bd7b4",
-                            ConcurrencyStamp = "242bbe31-3b93-4a24-8ee9-2a12346776f6",
+                            Id = "382ddaa7-1217-4641-bb67-eade6211bd96",
+                            ConcurrencyStamp = "56a2303b-0a1b-4ff7-bc6d-ae49dd593af7",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "0e097943-57ba-4a9a-97ef-2e76b9c60ea1",
-                            ConcurrencyStamp = "1e7408a4-eb06-4762-82a7-8d440907dd8d",
+                            Id = "b1392a25-0366-4069-96be-b0bd3da12988",
+                            ConcurrencyStamp = "ab1548ba-3677-4c43-92eb-b8aaa2299b0e",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -238,10 +238,38 @@ namespace TrashCollector.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("BalanceDue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("OneTimePickUp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PickUpDate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StreetName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("SuspendEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("SuspendStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ZipCode")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerId");
