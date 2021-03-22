@@ -57,17 +57,23 @@ namespace TrashCollector.Models
             get; set;
         }
 
-        [Display(Name = "Suspend Start Date (If Applicable)")]
+        [Display(Name = "Suspend Start Date (Optional)")]
         public DateTime? SuspendStartDate
         {
             get; set;
         }
 
-        [Display(Name = "Suspend End Date (If Applicable)")]
+        [Display(Name = "Suspend End Date: (Optional)")]
         public DateTime? SuspendEndDate
         {
             get; set;
         }
+
+        //[Display(Name = "Balance Due")]
+        //public double Balance
+        //{
+        //    get; set; 
+        //}
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId
