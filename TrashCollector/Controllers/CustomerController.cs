@@ -56,6 +56,8 @@ namespace TrashCollector.Controllers
         {
             try
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                customer.IdentityUserId = userId;
                 _context.Customers.Add(customer);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -116,28 +118,6 @@ namespace TrashCollector.Controllers
                 return View();
             }
         }
-        public ActionResult ChargeCustomer(int id)
-        {
-            var chargeId = _context.Customers.Find(id);
-            return View(chargeId);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ChargeCustomer(int id, Customer customer) // add it with delete, edit, detail - david 
-        {
-            try
-            {
-                // var
-                customer.BalanceDue += 20;
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                Console.WriteLine("Error!");
-                return View();
 
-            }
-        }
     }
 }   

@@ -26,7 +26,8 @@ namespace TrashCollector.Controllers
             if (employee == null)
             {
                 string currentDayOfWeek = DateTime.Now.DayOfWeek.ToString(); // need this to display current day of the week 
-                var customerSameZip = _context.Customers.Where(c => c.ZipCode == employee.Zipcode).ToList();
+                var customerSameZipCode = _context.Customers.Where(c => c.ZipCode == employee.Zipcode).ToList();
+                var customerSameDay = customerSameZipCode.Where(c => c.PickUpDate == currentDayOfWeek);
             }
             return View();
         }
@@ -51,6 +52,8 @@ namespace TrashCollector.Controllers
         {
             try
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                employee.IdentityUserId = userId;
                 _context.Employees.Add(employee);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -108,6 +111,30 @@ namespace TrashCollector.Controllers
             {
                 Console.WriteLine("Error!");
                 return View();
+            }
+        }
+
+        public ActionResult ChargeCustomer(int id)
+        {
+            var chargeId = _context.Customers.Find(id);
+            return View(chargeId);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChargeCustomer(int id, Customer customer) // add it with delete, edit, detail - david 
+        {
+            try
+            {
+                // var
+                customer.BalanceDue += 20;
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                Console.WriteLine("Error!");
+                return View();
+
             }
         }
     }

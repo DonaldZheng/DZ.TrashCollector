@@ -45,7 +45,7 @@ namespace TrashCollector.Models
             get; set;
         }
 
-        [Display(Name = "Weekly Pickup Date")]
+        [Display(Name = "Weekly Pickup Day")]
         public string PickUpDate
         {
             get; set;
@@ -70,7 +70,7 @@ namespace TrashCollector.Models
         }
 
         [Display(Name = "Balance Due")]
-        public double BalanceDue
+        public int BalanceDue
         {
             get; set;
         }
