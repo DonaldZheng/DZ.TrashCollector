@@ -21,10 +21,16 @@ namespace TrashCollector.Controllers
             _context = context;
         }
         // GET: CustomerController
-        public ActionResult Index()
+        public ActionResult Index() //shown in nevin's standup, can either be in Details or Index 
         {
-            var returnList = _context.Customers.ToList();
-            return View(returnList);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            if (customer == null)
+            {
+                return RedirectToAction(nameof(Create));
+            }
+
+            return View();
 
         }
 
@@ -39,7 +45,7 @@ namespace TrashCollector.Controllers
         // GET: CustomerController/Create
         public ActionResult Create()
         {
-           
+
             return View();
         }
 
@@ -115,5 +121,23 @@ namespace TrashCollector.Controllers
             var chargeId = _context.Customers.Find(id);
             return View(chargeId);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChargeCustomer(int id, Customer customer) // add it with delete, edit, detail - david 
+        {
+            try
+            {
+                var chargeCustomer = _context.Customers.Find(id);
+                customer.BalanceDue += 20;
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                Console.WriteLine("Error!");
+                return View();
+
+            }
+        }
     }
-}
+}   

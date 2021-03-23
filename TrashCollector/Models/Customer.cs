@@ -51,7 +51,7 @@ namespace TrashCollector.Models
             get; set;
         }
 
-        [Display(Name = "One Time Pickup")]
+        [Display(Name = "Request Extra One Time Pickup")]
         public DateTime? OneTimePickUp
         {
             get; set;
@@ -70,7 +70,7 @@ namespace TrashCollector.Models
         }
 
         [Display(Name = "Balance Due")]
-        public double Balance
+        public double BalanceDue
         {
             get; set;
         }

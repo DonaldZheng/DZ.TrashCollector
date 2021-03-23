@@ -39,7 +39,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.SuspendEndDate)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.BalanceDue)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -72,6 +74,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SuspendEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BalanceDue)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
