@@ -127,7 +127,7 @@ namespace TrashCollector.Controllers
         {
             try
             {
-                var chargeCustomer = _context.Customers.Find(id);
+                // var
                 customer.BalanceDue += 20;
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
