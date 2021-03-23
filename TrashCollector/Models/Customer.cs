@@ -44,9 +44,15 @@ namespace TrashCollector.Models
         {
             get; set;
         }
+        [Display(Name = "Confirm Pick Up")]
+        public string ConfirmPickUp
+        {
+            get; set; 
+        }
+
 
         [Display(Name = "Weekly Pickup Day")]
-        public string PickUpDate
+        public string PickUpDay
         {
             get; set;
         }

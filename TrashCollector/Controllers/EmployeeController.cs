@@ -27,7 +27,7 @@ namespace TrashCollector.Controllers
             {
                 string currentDayOfWeek = DateTime.Now.DayOfWeek.ToString(); // need this to display current day of the week 
                 var customerSameZipCode = _context.Customers.Where(c => c.ZipCode == employee.Zipcode).ToList();
-                var customerSameDay = customerSameZipCode.Where(c => c.PickUpDate == currentDayOfWeek);
+                var customerSameDay = customerSameZipCode.Where(c => c.PickUpDay == currentDayOfWeek);
             }
             return View();
         }

@@ -42,10 +42,16 @@
             @Html.DisplayFor(model => model.ZipCode)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PickUpDate)
+            @Html.DisplayNameFor(model => model.ConfirmPickUp)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PickUpDate)
+            @Html.DisplayFor(model => model.ConfirmPickUp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PickUpDay)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PickUpDay)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.OneTimePickUp)
@@ -71,6 +77,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.BalanceDue)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdentityUser)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdentityUser.Id)
+        </dd class>
     </dl>
     
     <form asp-action="Delete">
