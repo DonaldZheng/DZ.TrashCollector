@@ -10,8 +10,8 @@ using TrashCollector.Data;
 namespace TrashCollector.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210322171440_Initial2")]
-    partial class Initial2
+    [Migration("20210324192257_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,15 +50,15 @@ namespace TrashCollector.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2bf9f542-1e0c-4f9d-a4cc-e098d6755144",
-                            ConcurrencyStamp = "4982bba6-9b17-4554-b6e6-c94f7301c3eb",
+                            Id = "8a7ad0de-dc22-4018-a877-ab545b596874",
+                            ConcurrencyStamp = "f499d7d5-85ab-4f43-84dd-495aa32e22e9",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "720f7570-a52d-4a8a-8c8b-669238e74612",
-                            ConcurrencyStamp = "ff518240-a785-4880-b0ce-4449009e29fd",
+                            Id = "e0ce5538-aeb0-4b7d-ba58-499c678e692e",
+                            ConcurrencyStamp = "47cca180-176e-4c20-84fc-8e0138ff52f8",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -240,7 +240,13 @@ namespace TrashCollector.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BalanceDue")
+                        .HasColumnType("int");
+
                     b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConfirmPickUp")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -256,7 +262,7 @@ namespace TrashCollector.Migrations
                     b.Property<DateTime?>("OneTimePickUp")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PickUpDate")
+                    b.Property<string>("PickUpDay")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StreetName")
@@ -285,10 +291,19 @@ namespace TrashCollector.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("SelectedDatePickUp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Zipcode")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeId");

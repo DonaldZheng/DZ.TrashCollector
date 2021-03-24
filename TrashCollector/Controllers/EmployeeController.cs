@@ -25,12 +25,23 @@ namespace TrashCollector.Controllers
             var employee = _context.Employees.Where(e => e.IdentityUserId == userId).SingleOrDefault();
             if (employee == null)
             {
-                string currentDayOfWeek = DateTime.Now.DayOfWeek.ToString(); // need this to display current day of the week 
-                var customerSameZipCode = _context.Customers.Where(c => c.ZipCode == employee.Zipcode).ToList();
-                var customerSameDay = customerSameZipCode.Where(c => c.PickUpDay == currentDayOfWeek);
+                return RedirectToAction(nameof(Create));
             }
-            return View();
+            //string currentDayOfWeek = DateTime.Now.DayOfWeek.ToString();
+            //var customersSameZip = _context.Customers.Where(c => c.ZipCode == employee.Zipcode && c.PickUpDay == currentDayOfWeek).ToList();
+
+
+            ////var customersSameZip = _context.Customers.Where(c => c.ZipCode == employee.Zipcode && (c.PickUpDay == currentDayOfWeek || c.OneTimePickUp.DayOfWeek.ToString() == currentDayOfWeek) && (!(c.SuspendStartDate < DateTime.Now && c.SuspendEndDate > DateTime.Now))).ToList();
+            //return View(customersSameZip);
+
+            string currentDayOfWeek = DateTime.Now.DayOfWeek.ToString();
+            var customersSameZip = _context.Customers.Where(c => c.ZipCode == employee.Zipcode && c.PickUpDay == currentDayOfWeek).ToList();
+            var customersSuspended = customersSameZip.Where(c => c.SuspendStartDate.ToString() == currentDayOfWeek && c.SuspendEndDate.ToString() == currentDayOfWeek).ToList();
+            var NewSet = customersSameZip.Except(customersSuspended);
+            return View(NewSet);
         }
+
+       
 
         // GET: EmployeeController/Details/5
         public ActionResult Details(int id)
@@ -125,7 +136,8 @@ namespace TrashCollector.Controllers
         {
             try
             {
-                // var
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                customer.IdentityUserId = userId;
                 customer.BalanceDue += 20;
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));

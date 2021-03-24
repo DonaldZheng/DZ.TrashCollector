@@ -1,42 +1,18 @@
 ﻿@model TrashCollector.Models.Customer
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Suspend";
 }
 
-<h1>Create</h1>
+<h1>Suspend</h1>
 
 <h4>Customer</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Suspend">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StreetName" class="control-label"></label>
-                <input asp-for="StreetName" class="form-control" />
-                <span asp-validation-for="StreetName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ZipCode" class="control-label"></label>
-                <input asp-for="ZipCode" class="form-control" />
-                <span asp-validation-for="ZipCode" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="CustomerId" />
             <div class="form-group">
                 <label asp-for="PickUpDay" class="control-label"></label>
                 <input asp-for="PickUpDay" class="form-control" />
@@ -56,10 +32,9 @@
                 <label asp-for="SuspendEndDate" class="control-label"></label>
                 <input asp-for="SuspendEndDate" class="form-control" />
                 <span asp-validation-for="SuspendEndDate" class="text-danger"></span>
-            </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

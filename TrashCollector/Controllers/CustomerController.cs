@@ -30,7 +30,7 @@ namespace TrashCollector.Controllers
                 return RedirectToAction(nameof(Create));
             }
 
-            return View();
+            return View(customer);
 
         }
 
@@ -47,7 +47,7 @@ namespace TrashCollector.Controllers
         {
 
             return View();
-        }
+        } 
 
         // POST: CustomerController/Create
         [HttpPost]
@@ -79,19 +79,20 @@ namespace TrashCollector.Controllers
         // POST: CustomerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Customer customer)
+        public ActionResult Edit(int id, Models.Customer customer)
         {
             try
             {
+
                 _context.Customers.Update(customer);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
             }
             catch
             {
                 Console.WriteLine("Error"!);
                 return View();
             }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: CustomerController/Delete/5
@@ -118,6 +119,13 @@ namespace TrashCollector.Controllers
                 return View();
             }
         }
+
+        //public ActionResult Suspend (int id)
+        //{
+        //    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    var customer = _context.Customers.Where(c => c.IdentityUserId == userId).FirstOrDefault();
+        //    return View(customer);
+        //}
 
     }
 }   

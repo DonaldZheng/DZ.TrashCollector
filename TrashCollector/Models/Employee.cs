@@ -15,22 +15,22 @@ namespace TrashCollector.Models
         {
             get; set;
         }
-        [ForeignKey("First Name")]
+        
         public string FirstName
         {
             get; set;
         }
-        [ForeignKey("Last Name")]
+   
         public string LastName
         {
             get; set;
         }
-        [ForeignKey("Zip Code")]
+        
         public string Zipcode
         {
             get; set; 
         }
-        [ForeignKey("Selected Date")]
+        
         public DateTime? SelectedDatePickUp
         {
             get; set;
