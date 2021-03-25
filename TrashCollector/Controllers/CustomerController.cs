@@ -58,6 +58,7 @@ namespace TrashCollector.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
+                customer.BalanceDue += 0;
                 _context.Customers.Add(customer);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));

@@ -37,6 +37,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.SuspendEndDate)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BalanceDue)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -70,14 +73,17 @@
             <td>
                 @Html.DisplayFor(model => model.SuspendEndDate)
             </td>
-          
+            <td>
+                @Html.DisplayFor(model => model.BalanceDue)
+            </td>
+
             <td>
                 <a asp-action="Edit" asp-route-id="@Model.CustomerId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@Model.CustomerId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@Model.CustomerId">Delete</a> 
+                <a asp-action="Delete" asp-route-id="@Model.CustomerId">Delete</a>
                 @*<a asp-action="OneTimePickUp" asp-route-id="@Model.CustomerId">One Time Pick Up</a> |
-                <a asp-action="SuspendStartDate" asp-route-id="@Model.CustomerId">Suspend Account</a> |
-                <a asp-action="SuspendEndDate" asp-route-id="@Model.CustomerId">End Suspension</a>*@ 
+            <a asp-action="SuspendStartDate" asp-route-id="@Model.CustomerId">Suspend Account</a> |
+            <a asp-action="SuspendEndDate" asp-route-id="@Model.CustomerId">End Suspension</a>*@
             </td>
         </tr>
 }
