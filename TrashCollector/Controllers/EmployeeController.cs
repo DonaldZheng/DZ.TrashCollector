@@ -30,15 +30,15 @@ namespace TrashCollector.Controllers
             //string currentDayOfWeek = DateTime.Now.DayOfWeek.ToString();
             //var customersSameZip = _context.Customers.Where(c => c.ZipCode == employee.Zipcode && c.PickUpDay == currentDayOfWeek).ToList();
 
-
-            ////var customersSameZip = _context.Customers.Where(c => c.ZipCode == employee.Zipcode && (c.PickUpDay == currentDayOfWeek || c.OneTimePickUp.DayOfWeek.ToString() == currentDayOfWeek) && (!(c.SuspendStartDate < DateTime.Now && c.SuspendEndDate > DateTime.Now))).ToList();
+            // do this if DateTime is null
+            //var customersSameZip = _context.Customers.Where(c => c.ZipCode == employee.Zipcode && (c.PickUpDay == currentDayOfWeek || c.OneTimePickUp.DayOfWeek.ToString() == currentDayOfWeek) && (!(c.SuspendStartDate < DateTime.Now && c.SuspendEndDate > DateTime.Now))).ToList();
             //return View(customersSameZip);
 
             string currentDayOfWeek = DateTime.Now.DayOfWeek.ToString();
-            var customersSameZip = _context.Customers.Where(c => c.ZipCode == employee.Zipcode && c.PickUpDay == currentDayOfWeek).ToList();
-            var customersSuspended = customersSameZip.Where(c => c.SuspendStartDate.ToString() == currentDayOfWeek && c.SuspendEndDate.ToString() == currentDayOfWeek).ToList();
-            var NewSet = customersSameZip.Except(customersSuspended);
-            return View(NewSet);
+            var customersSameZip = _context.Customers.Where(c => c.ZipCode == employee.Zipcode && c.PickUpDay == currentDayOfWeek).ToList(); // belong to same zip code and active customer pick up for the day
+            var customersSuspended = customersSameZip.Where(c => c.SuspendStartDate.ToString() == currentDayOfWeek && c.SuspendEndDate.ToString() == currentDayOfWeek).ToList(); // Start/ End suspend equals current day 
+            var exception = customersSameZip.Except(customersSuspended); //same zip code expect customers that are suspended 
+            return View(exception);
         }
 
        
@@ -148,6 +148,12 @@ namespace TrashCollector.Controllers
                 return View();
 
             }
+        }
+
+        public ActionResult ConfirmPickUp(int? id)
+        {
+            var customer = _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
